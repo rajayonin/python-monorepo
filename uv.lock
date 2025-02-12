@@ -1,0 +1,30 @@
+version = 1
+requires-python = ">=3.12"
+
+[manifest]
+members = [
+    "common",
+    "python-monorepo",
+    "service1",
+    "service2",
+]
+
+[[package]]
+name = "common"
+version = "0.1.0"
+source = { virtual = "src/common" }
+
+[[package]]
+name = "python-monorepo"
+version = "0.1.0"
+source = { virtual = "." }
+
+[[package]]
+name = "service1"
+version = "0.1.0"
+source = { virtual = "src/service1" }
+
+[[package]]
+name = "service2"
+version = "0.1.0"
+source = { virtual = "src/service2" }

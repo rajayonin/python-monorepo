@@ -1,13 +1,12 @@
-FROM python:3.10-slim
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
-ENV POETRY_VIRTUALENVS_CREATE false
-RUN pip install --upgrade pip && pip install poetry
-COPY src/service1 /app/service1
+# Copy the project into the image
+ADD src/service1 /app
 COPY src/common /app/common
 
-WORKDIR /app/service1
-RUN poetry install
+# Sync the project into a new environment, using the frozen lockfile
+WORKDIR /app
+RUN uv lock
+RUN uv sync --frozen
 
-#CMD ["poetry", "run", "python", "service1/main.py"]
-CMD ["python", "service1/main.py"]
-
+CMD ["uv", "run", "main.py"]

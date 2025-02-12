@@ -1,17 +1,13 @@
-[tool.poetry]
+[project]
 name = "python-monorepo"
 version = "0.1.0"
-description = ""
-authors = ["Kasper Primdal Lauritzen <git@kplauritzen.dk>"]
+description = "Simple example of multiple services managed with uv"
+requires-python = ">=3.12"
+authors = [{ name = "Luis Daniel Casais", email = "lcasais@pa.uc3m.es" }]
+dependencies = []
 
-[tool.poetry.dependencies]
-python = "^3.10"
-common = { path = "src/common/", develop = true }
-service1 = { path = "src/service1/", develop = true }
-service2 = { path = "src/service2/", develop = true }
+[tool.uv.sources]
+common = { workspace = true }
 
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv.workspace]
+members = ["src/service1", "src/service2", "src/common"]
